@@ -2,26 +2,7 @@ console.log("script running");
 
 var cities = [];
 
-var initListeners = function(){
-    console.log("init listeners");
 
-    $("new-search").submit(function(event){
-        event.preventDefault();
-        console.log("submitted form");
-
-        var newCity = $("#new-city").val();
-
-        var newSearch = {
-            city: newCity
-
-        };
-
-        addCity(newSearch)
-    
-    });
-
-    $("#search-button").click()
-}
 
 var getCity = function() {
     console.log("get city");
@@ -37,10 +18,34 @@ var getCity = function() {
         });
 };
 
-var updateForm
+var updateForm = function(city){
+    console.log("update form:"+city+" ... ")
+    $("#new-city").val(city);
+};
+
+var initListeners = function(){
+    console.log("init listeners");
+
+    $("#new-search").submit(function(event){
+        event.preventDefault();
+        console.log("submitted form");
+
+        var newCity = $("#new-city").val();
+
+        var newSearch = {
+            city: newCity
+
+        };
+
+        addCity(newSearch);
+    
+    });
+
+    $("#search-button").click()
+}
 
 $(function(){
     console.log("init");
     initListeners();
-    loadCities();
+    // loadCities();
 });
