@@ -2,11 +2,14 @@ console.log("script running");
 
 var cities = [];
 
+var addCity = function() {
+    console.log("add city");
+    var APIKey = "517b598cb370b4d60b6492926681f7ac";
+    var cityUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid="+APIKey;
+    var locations = [
+        city: Raleigh,
 
-
-var getCity = function() {
-    console.log("get city");
-    var cityUrl = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={517b598cb370b4d60b6492926681f7ac}";
+    ]
     fetch(cityUrl)
         .then( function(response) {
             return response.json();
@@ -16,6 +19,8 @@ var getCity = function() {
 
             updateForm(data.city);
         });
+
+    
 };
 
 var updateForm = function(city){
