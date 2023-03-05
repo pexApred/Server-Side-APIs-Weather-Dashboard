@@ -19,7 +19,25 @@ var initListeners = function(){
         addCity(newSearch)
     
     });
+
+    $("#search-button").click()
 }
+
+var getCity = function() {
+    console.log("get city");
+    var cityUrl = "https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={517b598cb370b4d60b6492926681f7ac}";
+    fetch(cityUrl)
+        .then( function(response) {
+            return response.json();
+        })
+        .then( function(data) {
+            console.log("fetched city", data);
+
+            updateForm(data.city);
+        });
+};
+
+var updateForm
 
 $(function(){
     console.log("init");
