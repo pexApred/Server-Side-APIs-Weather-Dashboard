@@ -10,7 +10,6 @@ var addCity = function() {
     console.log(city);
 
     var cityUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&limit=5&appid="+APIKey;
-    // var cityDaysUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid="+APIKey;
 
     fetch(cityUrl)
         .then( function(response) {
@@ -32,15 +31,19 @@ var populateCityToday = function(APIResponse){
     var resultsToday = {
         cityName: APIResponse.city.name,
         currentDate: APIResponse.list[0].dt_txt.split(" ")[0],
-        weatherSymbol: APIResponse.list[0].weather[0].icon,
+        weatherIcon: APIResponse.list[0].weather[0].icon,
         cityTemp: (APIResponse.list[0].main.temp - 273.15) * 1.8 + 32,
         cityWind: APIResponse.list[0].wind.speed,
         cityHumidity: APIResponse.list[0].main.humidity,
     };
 
    var cityNameEL = document.createElement("h2");
-   cityNameEL.innerHTML = resultsToday.cityName +" "+ resultsToday.currentDate.split("-").sort().join("/") + " " + resultsToday.weatherSymbol;
+   cityNameEL.innerHTML = resultsToday.cityName +" ("+ resultsToday.currentDate.split("-").sort().join("/") + ") ";
    document.getElementById("weather-today").appendChild(cityNameEL);
+
+   var weatherIconEl = document.createElement("img");
+   weatherIconEl.src = "https://openweathermap.org/img/w/" + resultsToday.weatherIcon + ".png";
+   cityNameEL.appendChild(weatherIconEl);
 
    var cityTempEL = document.createElement("p");
    cityTempEL.innerHTML = "Temp: " + resultsToday.cityTemp.toFixed(2) + "ºF";

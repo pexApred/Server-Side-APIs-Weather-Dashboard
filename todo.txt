@@ -18,13 +18,5 @@ Layout:
 
 Title: Weather Dashboard
 
-Search for a city <aside> <input> type="text" id="new-search"
-create search button
-Container for Selected 'current city'
-- City (Atlanta) date | Time?
-- temperature
-- wind
-- humidity
-
 5 day forecast for 'current' city
 
