@@ -66,8 +66,20 @@ var populateForecast = function (APIResponse){
 
     for (var i=0; i < APIResponse.list.length; i += 8) {
         var forecastDay = APIResponse.list[i];
-    }
 
+        var forecastItem = document.createElement("div");
+        forecastItem.classList.add("forecast-item");
+
+        var forecastDate = document.createElement("h4");
+        forecastDate.textContent = forecastDay.dt_txt.split(" ")[0].split("-").reverse().join("/");
+        forecastItem.appendChild(forecastDate)
+
+        var forecastIcon = document.createElement("img");
+        forecastIcon.src = "https://openweathermap.org/img/w/" + resultsToday.weather[0].icon + ".png";
+
+
+    }
+    // document.getElementById("five-day").appendChild(forecastContainer);
 }
 
 var updateCityList = function(){
