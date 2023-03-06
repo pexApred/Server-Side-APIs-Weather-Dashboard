@@ -32,25 +32,26 @@ var populateCityToday = function(APIResponse){
     var resultsToday = {
         cityName: APIResponse.city.name,
         currentDate: APIResponse.list[0].dt_txt.split(" ")[0],
-        cityTemp: APIResponse.list[0].main.temp,
+        weatherSymbol: APIResponse.list[0].weather[0].icon,
+        cityTemp: (APIResponse.list[0].main.temp - 273.15) * 1.8 + 32,
         cityWind: APIResponse.list[0].wind.speed,
         cityHumidity: APIResponse.list[0].main.humidity,
     };
 
    var cityNameEL = document.createElement("h2");
-   cityNameEL.innerHTML = resultsToday.cityName +" "+ resultsToday.currentDate.split("-").reverse().join("/");
+   cityNameEL.innerHTML = resultsToday.cityName +" "+ resultsToday.currentDate.split("-").reverse().join("/") + resultsToday.weatherSymbol;
    document.getElementById("weather-today").appendChild(cityNameEL);
 
    var cityTempEL = document.createElement("p");
-   cityTempEL.innerHTML = "Temp: " + resultsToday.cityTemp;
+   cityTempEL.innerHTML = "Temp: " + resultsToday.cityTemp.toFixed(2) + "ºF";
    document.getElementById("weather-today").appendChild(cityTempEL);
 
    var cityWindEL = document.createElement("p");
-   cityWindEL.innerHTML = "Wind: " + resultsToday.cityWind;
+   cityWindEL.innerHTML = "Wind: " + resultsToday.cityWind + " MPH";
    document.getElementById("weather-today").appendChild(cityWindEL);
 
    var cityHumidityEL = document.createElement("p");
-   cityHumidityEL.innerHTML = "Humidity: " + resultsToday.cityHumidity;
+   cityHumidityEL.innerHTML = "Humidity: " + resultsToday.cityHumidity + "%";
    document.getElementById("weather-today").appendChild(cityHumidityEL);
 
 
