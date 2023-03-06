@@ -39,7 +39,7 @@ var populateCityToday = function(APIResponse){
     };
 
    var cityNameEL = document.createElement("h2");
-   cityNameEL.innerHTML = resultsToday.cityName +" "+ resultsToday.currentDate.split("-").reverse().join("/") + resultsToday.weatherSymbol;
+   cityNameEL.innerHTML = resultsToday.cityName +" "+ resultsToday.currentDate.split("-").sort().join("/") + " " + resultsToday.weatherSymbol;
    document.getElementById("weather-today").appendChild(cityNameEL);
 
    var cityTempEL = document.createElement("p");
