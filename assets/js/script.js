@@ -1,13 +1,11 @@
-console.log("script running");
-
 var cities = [];
 
 var addCity = function() {
-    console.log("add city");
+    // console.log("add city");
     var APIKey = "517b598cb370b4d60b6492926681f7ac";
     
     var city = $("#new-city").val();
-    console.log(city);
+    // console.log(city);
 
     var cityUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&limit=5&appid="+APIKey;
 
@@ -16,9 +14,10 @@ var addCity = function() {
             return response.json();
         })
         .then( function(data) {
-            console.log("fetched city", data);
+            // console.log("fetched city", data);
 
             populateCityToday(data);
+            populateForecast(data);
             // updateForm(data.city);
         });
 
@@ -26,7 +25,7 @@ var addCity = function() {
 };
 
 var populateCityToday = function(APIResponse){
-    console.log(APIResponse.city.name);
+    // console.log(APIResponse.city.name);
     
     var resultsToday = {
         cityName: APIResponse.city.name,
@@ -56,15 +55,20 @@ var populateCityToday = function(APIResponse){
    var cityHumidityEL = document.createElement("p");
    cityHumidityEL.innerHTML = "Humidity: " + resultsToday.cityHumidity + "%";
    document.getElementById("weather-today").appendChild(cityHumidityEL);
-
-
 }
 
-// Create button to append 
-// var searchHistory = function(city){
-//     console.log("update form:"+city+" ... ")
-//     $("#new-city").val();
-// };
+var populateForecast = function (APIResponse){
+    console.log(APIResponse.city.name);
+    var forecastContainer = document.getElementById("five-day");
+    var cityForecastTitle = document.createElement("h3");
+    cityForecastTitle.textContent = "5-Day Forecast: "
+    forecastContainer.appendChild(cityForecastTitle);
+
+    for (var i=0; i < APIResponse.list.length; i += 8) {
+        var forecastDay = APIResponse.list[i];
+    }
+
+}
 
 var updateCityList = function(){
     console.log("update city list");
@@ -77,11 +81,11 @@ var updateCityList = function(){
 }
 
 var initListeners = function(){
-    console.log("init listeners");
+    // console.log("init listeners");
 
     $("#new-search").submit(function(event){
         event.preventDefault();
-        console.log("submitted form");
+        // console.log("submitted form");
     
     });
 
@@ -89,7 +93,7 @@ var initListeners = function(){
 }
 
 $(function(){
-    console.log("init");
+    // console.log("init");
     initListeners();
     // loadCities();
 });
