@@ -75,7 +75,7 @@ var populateForecast = function (APIResponse){
         forecastItem.appendChild(forecastDate)
 
         var forecastIcon = document.createElement("img");
-        forecastIcon.src = "https://openweathermap.org/img/w/" + resultsToday.weather[0].icon + ".png";
+        forecastIcon.src = "https://openweathermap.org/img/w/" + forecastDay.weather[0].icon + ".png";
         forecastItem.appendChild(forecastIcon);
 
         var forecastTemp = document.createElement("p");
