@@ -76,10 +76,24 @@ var populateForecast = function (APIResponse){
 
         var forecastIcon = document.createElement("img");
         forecastIcon.src = "https://openweathermap.org/img/w/" + resultsToday.weather[0].icon + ".png";
+        forecastItem.appendChild(forecastIcon);
 
+        var forecastTemp = document.createElement("p");
+        forecastTemp.textContent = "Temp: " + ((forecastDay.main.temp - 273.15) *1.8 + 32).toFixed(2) + "ºF";
+        forecastItem.appendChild(forecastTemp);
 
-    }
-    // document.getElementById("five-day").appendChild(forecastContainer);
+        var forecastWind = document.createElement("p");
+        forecastWind.textContent = "Wind: " + forecastDay.wind.speed + "MPH";
+        forecastItem.appendChild(forecastWind);
+
+        var forecastHumidity = document.createElement("p");
+        forecastHumidity.textContent = "Humidity: " + forecastDay.main.humidity + "%";
+        forecastItem.appendChild(forecastHumidity);
+
+        forecastContainer.appendChild(forecastItem);
+
+    };
+    document.getElementById("five-day").appendChild(forecastContainer);
 }
 
 var updateCityList = function(){
