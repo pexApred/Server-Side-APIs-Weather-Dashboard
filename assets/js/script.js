@@ -58,7 +58,7 @@ var populateCityToday = function(APIResponse){
 }
 
 var populateForecast = function (APIResponse){
-    console.log(APIResponse.city.name);
+    // console.log(APIResponse.city.name);
     var forecastContainer = document.getElementById("five-day");
     var cityForecastTitle = document.createElement("h3");
     cityForecastTitle.textContent = "5-Day Forecast: "
@@ -71,7 +71,7 @@ var populateForecast = function (APIResponse){
         forecastItem.classList.add("forecast-item");
 
         var forecastDate = document.createElement("h4");
-        forecastDate.textContent = forecastDay.dt_txt.split(" ")[0].split("-").reverse().join("/");
+        forecastDate.textContent = " (" + forecastDay.dt_txt.split(" ")[0].split("-").sort().join("/") + ") ";
         forecastItem.appendChild(forecastDate)
 
         var forecastIcon = document.createElement("img");
@@ -91,9 +91,8 @@ var populateForecast = function (APIResponse){
         forecastItem.appendChild(forecastHumidity);
 
         forecastContainer.appendChild(forecastItem);
-
     };
-    document.getElementById("five-day").appendChild(forecastContainer);
+    
 }
 
 var updateCityList = function(){
