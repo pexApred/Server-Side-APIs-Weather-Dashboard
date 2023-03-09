@@ -4,7 +4,7 @@ var addCity = function() {
     // console.log("add city");
     var APIKey = "517b598cb370b4d60b6492926681f7ac";
     
-    var city = $("#new-city").val();
+    var city = $("#new-city").val().trim();
     // console.log(city);
 
     var cityUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&limit=5&appid="+APIKey;
@@ -22,6 +22,16 @@ var addCity = function() {
         });
 
     
+};
+
+var saveCity = function(cityName) {
+    var cityObject = {
+        city: cityName
+    };
+    cities.unshift(cityObject);
+    localStorage.setItem("cities", JSON.stringify(cities));
+    updateCityList();
+    console.log("qahoo");
 };
 
 var populateCityToday = function(APIResponse){
