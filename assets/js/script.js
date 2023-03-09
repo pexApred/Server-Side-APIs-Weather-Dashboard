@@ -42,7 +42,11 @@ var loadCities = function(){
     }
 };
 
-
+var clearCities = function() {
+    cities =[];
+    localStorage.removeItem("cities");
+    updateCityList();
+};
 
 var populateCityToday = function(APIResponse){
     // console.log(APIResponse.city.name);
@@ -122,8 +126,12 @@ var updateCityList = function(){
     for (var i=0;i<cities.length; i++) {
         citiesHtml += "<article class='cities' data-index='"+i+"'>";
         citiesHtml += "<p class='city'>"+cities[i].city+'</p>';
+        citiesHtml += "</article>";
     };
-}
+    document.getElementById("search-history").innerHTML = citiesHtml;
+};
+
+
 
 var initListeners = function(){
     // console.log("init listeners");
