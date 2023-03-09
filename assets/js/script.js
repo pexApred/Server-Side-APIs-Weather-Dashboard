@@ -34,6 +34,16 @@ var saveCity = function(cityName) {
     console.log("qahoo");
 };
 
+var loadCities = function(){
+    var savedCities = localStorage.getItem("cities");
+    if (savedCities) {
+        cities = JSON.parse(savedCities);
+        updateCityList();
+    }
+};
+
+
+
 var populateCityToday = function(APIResponse){
     // console.log(APIResponse.city.name);
     
@@ -130,5 +140,5 @@ var initListeners = function(){
 $(function(){
     // console.log("init");
     initListeners();
-    // loadCities();
+    loadCities();
 });
