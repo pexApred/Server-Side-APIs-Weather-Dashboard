@@ -18,7 +18,6 @@ var addCity = function() {
             // updateForm(data.city);
         });
         saveCity(city);
-    
 };
 
 var saveCity = function(cityName) {
@@ -123,7 +122,7 @@ var updateCityList = function(){
     var $cityList = $("#search-history");
     var citiesHtml = "";
     for (var i=0;i<cities.length; i++) {
-        citiesHtml += "<article data-index='"+i+"'>";
+        citiesHtml += "<article class='cities' data-index='"+i+"'>";
         citiesHtml += "<p class='city'>"+cities[i].city+'</p>';
         citiesHtml += "</article>";
     };
