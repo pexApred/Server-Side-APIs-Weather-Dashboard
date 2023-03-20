@@ -1,12 +1,10 @@
 var cities = [];
 
 var addCity = function() {
-    // console.log("add city");
+    console.log("add city");
     var APIKey = "517b598cb370b4d60b6492926681f7ac";
-    
     var city = $("#new-city").val().trim();
-    // console.log(city);
-
+    console.log(city);
     var cityUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&limit=5&appid="+APIKey;
 
     fetch(cityUrl)
@@ -14,13 +12,12 @@ var addCity = function() {
             return response.json();
         })
         .then( function(data) {
-            // console.log("fetched city", data);
-
+            console.log("fetched city", data);
             populateCityToday(data);
             populateForecast(data);
             // updateForm(data.city);
         });
-
+        saveCity(city);
     
 };
 
@@ -31,7 +28,9 @@ var saveCity = function(cityName) {
     cities.unshift(cityObject);
     localStorage.setItem("cities", JSON.stringify(cities));
     updateCityList();
-    console.log("qahoo");
+    $("cities").click(function() {
+        var index = $(this).attr("data-index");
+    })
 };
 
 var loadCities = function(){
@@ -120,15 +119,16 @@ var populateForecast = function (APIResponse){
 }
 
 var updateCityList = function(){
-    console.log("update city list");
-
+    console.log("update city list", cities);
+    var $cityList = $("#search-history");
     var citiesHtml = "";
     for (var i=0;i<cities.length; i++) {
-        citiesHtml += "<article class='cities' data-index='"+i+"'>";
+        citiesHtml += "<article data-index='"+i+"'>";
         citiesHtml += "<p class='city'>"+cities[i].city+'</p>';
         citiesHtml += "</article>";
     };
-    document.getElementById("search-history").innerHTML = citiesHtml;
+    $cityList.html(citiesHtml);
+    // document.getElementById("search-history").innerHTML = citiesHtml;
 };
 
 
