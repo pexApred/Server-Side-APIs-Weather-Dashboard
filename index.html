@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
 </head>
+
 <body>
-    
     <h1 id="title">Weather Dashboard</h1>
+    <div id="body-container">
+        <div id="search-container">
+            <h2 id="search">Search for a City:</h2>
 
-    <h2 id="search">Search for a City:</h2>
+            <form id="new-search">
+                <input type="text" id="new-city" placeholder="Example: Raleigh" />
+                <input type="button" id="search-button" value="Search" />
+            </form>
 
-    <form id="new-search">
-        <input type="text" id="new-city" placeholder="Example: Raleigh"/>
-        <input type="button" id="search-button" value="Search"/>
-    </form>
+            <div id="line"></div>
 
-    <section id="search-history"></section>
-    
-    <main id="current-city">
-        <div id="weather-today"></div>
+            <section id="search-history"> </section>
+        </div>
+        <div id="city-weather">
+            <main id="current-city">
+                <div id="weather-today"></div>
 
-        <div id="five-day"></div>
-    </main>
+                <div id="five-day"></div>
+            </main>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
