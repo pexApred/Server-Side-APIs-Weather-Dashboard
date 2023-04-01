@@ -6,7 +6,7 @@ var addCity = function () {
     var city = $("#new-city").val().trim() || "Raleigh";
     console.log(city);
     var cityUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&limit=5&appid=" + APIKey;
-
+    
     fetch(cityUrl)
         .then(function (response) {
             return response.json();
@@ -86,8 +86,9 @@ var populateForecast = function (APIResponse) {
     var cityForecastTitle = document.createElement("h3");
     cityForecastTitle.textContent = "5-Day Forecast: "
     forecastContainer.appendChild(cityForecastTitle);
+    
 
-    for (var i = 0; i < APIResponse.list.length; i += 8) {
+    for (var i = 2; i < APIResponse.list.length; i += 8) {
         var forecastDay = APIResponse.list[i];
 
         var forecastItem = document.createElement("div");
