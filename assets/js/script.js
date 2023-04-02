@@ -1,7 +1,7 @@
-var cities = [];
-
+var cities = JSON.parse(localStorage.getItem('search-history')) || [];
 var addCity = function () {
     console.log("add city");
+    
     var APIKey = "517b598cb370b4d60b6492926681f7ac";
     var city = $("#new-city").val().trim() || "Raleigh";
     console.log(city);
@@ -15,7 +15,6 @@ var addCity = function () {
             console.log("fetched city", data);
             populateCityToday(data);
             populateForecast(data);
-            // updateForm(data.city);
         });
     saveCity(city);
 };
@@ -25,6 +24,7 @@ var saveCity = function (cityName) {
         city: cityName
     };
     cities.unshift(cityObject);
+    cities = cities.slice(0, 10);
     localStorage.setItem("cities", JSON.stringify(cities));
     updateCityList();
     // $("cities").click(function () {
@@ -48,6 +48,8 @@ var clearCities = function () {
 
 var populateCityToday = function (APIResponse) {
     // console.log(APIResponse.city.name);
+    document.getElementById('weather-today').innerHTML = '';
+    document.getElementById('five-day').innerHTML = '';
 
     var resultsToday = {
         cityName: APIResponse.city.name,
@@ -125,10 +127,11 @@ var updateCityList = function () {
     var citiesHtml = "";
     for (var i = 0; i < cities.length; i++) {
         citiesHtml += "<article class='cities' data-index='" + i + "'>";
-        citiesHtml += "<p class='city'>" + cities[i].city + '</p>';
+        citiesHtml += "<button class='city'>" + cities[i].city + '</button>';
         citiesHtml += "</article>";
     };
     $cityList.html(citiesHtml);
+    $('.city').click(addCity);
     // document.getElementById("search-history").innerHTML = citiesHtml;
 };
 
@@ -144,6 +147,7 @@ var initListeners = function () {
     });
 
     $("#search-button").click(addCity);
+    
 }
 
 $(function () {
