@@ -59,11 +59,11 @@
     /* width: 75%; */
 }
 
-#current-city {
+/* #current-city {
     /* display: flex;
     flex-wrap: wrap;
-    width: 100%; */
-}
+    width: 100%; 
+} */
 
 #weather-today {
     border: 2px solid;
