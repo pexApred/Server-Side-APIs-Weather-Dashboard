@@ -1,9 +1,7 @@
 var cities = JSON.parse(localStorage.getItem('search-history')) || [];
-var addCity = function () {
+var addCity = function (city) {
     console.log("add city");
-    
     var APIKey = "517b598cb370b4d60b6492926681f7ac";
-    var city = $("#new-city").val().trim() || "Raleigh";
     console.log(city);
     var cityUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&limit=5&appid=" + APIKey;
     
@@ -34,6 +32,7 @@ var saveCity = function (cityName) {
 
 var loadCities = function () {
     var savedCities = localStorage.getItem("cities");
+
     if (savedCities) {
         cities = JSON.parse(savedCities);
         updateCityList();
@@ -62,7 +61,11 @@ var populateCityToday = function (APIResponse) {
 
 
     var cityNameEL = document.createElement("h2");
-    cityNameEL.innerHTML = resultsToday.cityName + " (" + resultsToday.currentDate.split("-").sort().join("/") + ") ";
+    var dateArray = resultsToday.currentDate.split("-");
+    var firstItem = dateArray.shift();
+    dateArray.push(firstItem);
+    console.log(dateArray);
+    cityNameEL.innerHTML = resultsToday.cityName + " (" + dateArray.join("/") + ") ";
     document.getElementById("weather-today").appendChild(cityNameEL);
 
     var weatherIconEl = document.createElement("img");
@@ -97,7 +100,12 @@ var populateForecast = function (APIResponse) {
         forecastItem.classList.add("forecast-item");
 
         var forecastDate = document.createElement("h4");
-        forecastDate.textContent = " (" + forecastDay.dt_txt.split(" ")[0].split("-").sort().join("/") + ") ";
+        var dateArray = forecastDay.dt_txt.split(" ")[0].split("-");
+        var firstItem = dateArray.shift();
+        dateArray.push(firstItem);
+        console.log(dateArray);
+        forecastDate.textContent = " (" + dateArray.join("/") + ") ";
+        // console.log(forecastDate.textContent);
         forecastItem.appendChild(forecastDate)
 
         var forecastIcon = document.createElement("img");
@@ -131,7 +139,10 @@ var updateCityList = function () {
         citiesHtml += "</article>";
     };
     $cityList.html(citiesHtml);
-    $('.city').click(addCity);
+    $('.city').click(function (){
+        let city = this.innerText;
+        addCity(city);
+    });
     // document.getElementById("search-history").innerHTML = citiesHtml;
 };
 
@@ -146,8 +157,11 @@ var initListeners = function () {
 
     });
 
-    $("#search-button").click(addCity);
-    
+    $("#search-button").click(function(){
+        let city = $("#new-city").val().trim() || "Raleigh";
+        addCity(city);
+    });
+
 }
 
 $(function () {
