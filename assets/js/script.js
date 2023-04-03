@@ -161,6 +161,12 @@ var initListeners = function () {
         addCity(city);
     });
 
+    $("#new-city").keyup(function(event){
+        let city = $(this).val().trim() || "Raleigh";
+        if (event.key === 'Enter') {
+            addCity(city);
+        }
+    });
 }
 
 $(function () {

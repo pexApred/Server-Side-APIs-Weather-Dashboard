@@ -56,14 +56,7 @@
 #city-weather {
     display: flex;
     flex-wrap: wrap;
-    /* width: 75%; */
 }
-
-/* #current-city {
-    /* display: flex;
-    flex-wrap: wrap;
-    width: 100%; 
-} */
 
 #weather-today {
     border: 2px solid;
@@ -89,13 +82,16 @@ img {
     padding: 1%;
     border: 2px solid;
     color: var(--white);
-    background-color: purple;
+    background-color: var(--blue);
     margin-right: 10px;
 }
 
 .city {
+    font-size: larger;
+    width: 100%;
     text-align: center;
-    background-color: var(--blue);
+    background: linear-gradient(to right, purple,var(--darkpurple), var(--purple), var(--blue),var(--purple), var(--darkpurple), purple);
+    /* background-color: var(--blue); */
     border-radius: var(--BR);
     padding: 1%;
     color: var(--white);
