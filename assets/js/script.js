@@ -126,7 +126,6 @@ var populateForecast = function (APIResponse) {
 
         forecastContainer.appendChild(forecastItem);
     };
-
 }
 
 var updateCityList = function () {
